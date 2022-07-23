@@ -23,6 +23,7 @@ st.markdown("<h1 style='text-align: center; color: Blue;'>Neural Style Transfer<
             unsafe_allow_html=True)
 
 
+
 main_bg = "./images/pyto.png"
 main_bg_ext = "jpg"
 
@@ -45,7 +46,7 @@ style_name = st.sidebar.selectbox(
      "udnie", "tg", "demon_slayer", "ben_giles", "ben_giles_2")
 )
 path_style = os.path.join(root_style, style_name+".jpg")
-stylize_button = st.sidebar.button(label="Generate")
+
 
 # Upload image functionality
 img = None
@@ -60,9 +61,8 @@ if not uploaded_file:
 else:
     img = Image.open(uploaded_file)
     # check required here if file is an image file
-    col1, col2 = st.columns(2)
-    col1.image(img, caption='Uploaded Image.', use_column_width=True,width=300)
-    col2.image(path_style, caption='Style Image', use_column_width=True,width=300)
+    st.image(img, caption='Uploaded Image.', use_column_width=True)
+    st.image(path_style, caption='Style Image', use_column_width=True)
 
 
 extensions = [".png", ".jpeg", ".jpg"]
@@ -80,15 +80,14 @@ if uploaded_file is not None and any(extension in uploaded_file.name for extensi
     output_image = os.path.join(
         root_output, style_name+"-"+name_file[0]+".jpg")
 
-    
+    stylize_button = st.button("Stylize")
 
-    if st.sidebar.button(label="Generate"):
+    if stylize_button:
         model = style.load_model(model_path)
         stylized = style.stylize(model, input_image, output_image)
         # displaying the output image
         st.write("### Output Image")
         # image = Image.open(output_image)
-        col1.image(stylized, width=400, use_column_width=True)
         st.image(stylized, width=400, use_column_width=True)
         st.markdown(get_image_download_link(
             stylized, name_file[0], style_name), unsafe_allow_html=True)
