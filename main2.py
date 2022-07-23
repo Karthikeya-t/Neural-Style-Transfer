@@ -45,7 +45,7 @@ style_name = st.sidebar.selectbox(
      "udnie", "tg", "demon_slayer", "ben_giles", "ben_giles_2")
 )
 path_style = os.path.join(root_style, style_name+".jpg")
-
+stylize_button = st.sidebar.button(label="Generate")
 
 # Upload image functionality
 img = None
@@ -80,7 +80,7 @@ if uploaded_file is not None and any(extension in uploaded_file.name for extensi
     output_image = os.path.join(
         root_output, style_name+"-"+name_file[0]+".jpg")
 
-    stylize_button = st.sidebar.button(label="Generate")
+    
 
     if stylize_button:
         model = style.load_model(model_path)
