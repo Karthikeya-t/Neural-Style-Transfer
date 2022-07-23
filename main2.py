@@ -21,8 +21,6 @@ def get_image_download_link(img, file_name, style_name):
 
 st.markdown("<h1 style='text-align: center; color: Blue;'>Neural Style Transfer</h1>",
             unsafe_allow_html=True)
-st.markdown("<h3 style='text-align: right; color: Blue;'>by Divy Mohan Rai</h3>",
-            unsafe_allow_html=True)
 
 
 main_bg = "./images/pyto.png"
@@ -62,8 +60,9 @@ if not uploaded_file:
 else:
     img = Image.open(uploaded_file)
     # check required here if file is an image file
-    st.image(img, caption='Uploaded Image.', use_column_width=True)
-    st.image(path_style, caption='Style Image', use_column_width=True)
+    col1, col2 = st.columns(2)
+    col1.image(img, caption='Uploaded Image.', use_column_width=True,width=300)
+    col2.image(path_style, caption='Style Image', use_column_width=True,width=300)
 
 
 extensions = [".png", ".jpeg", ".jpg"]
