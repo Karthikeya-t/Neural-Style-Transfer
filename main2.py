@@ -54,15 +54,15 @@ uploaded_file = st.file_uploader(
     "Choose an image...", type=["jpg", "jpeg", "png"])
 
 show_file = st.empty()
-
+col1, col2 = st.columns(2)
 # checking if user has uploaded any file
 if not uploaded_file:
     show_file.info("Please Upload an Image")
 else:
     img = Image.open(uploaded_file)
     # check required here if file is an image file
-    st.image(img, caption='Uploaded Image.', use_column_width=True)
-    st.image(path_style, caption='Style Image', use_column_width=True)
+    col1.image(img, caption='Uploaded Image.', use_column_width=True)
+    col2.image(path_style, caption='Style Image', use_column_width=True)
 
 
 extensions = [".png", ".jpeg", ".jpg"]
