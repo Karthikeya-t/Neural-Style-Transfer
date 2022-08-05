@@ -1,0 +1,9 @@
+name: binder-environment
+channels:
+  - conda-forge
+dependencies:
+  # Enforce Python version
+  - python=3.9
+  - streamlit
+  - torch
+  - torchvision
